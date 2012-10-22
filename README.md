@@ -2,10 +2,6 @@
 
   Node.js asynchronous implementation of the clustering algorithm k-means
 
-## Installation
-
-      $ npm install kmeans
-
 ## Example
 
 ```js

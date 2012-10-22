@@ -9,7 +9,7 @@ var kmeans = require('../')
 /**
  * Data (expressly very separated)
  */
-var data = [ 
+var data2D = [ 
   [-10, 5],
   [-11, 6],
   [-10.5, 6.5],
@@ -28,8 +28,27 @@ var data = [
   [41,-200],
   [40.25,-198]  
 ];
+var data3D = [ 
+  [-10, 5, 100],
+  [-11, 6, 101],
+  [-10.5, 6.5, 102],
+  [-9.5, 5.5, 103],
+  [-9.75, 6.25, 104],
 
-new kmeans.clusterize(data, {k: 3}, function(err,res) {
+  [200, 12, -11],
+  [205, 11.8, -10.8],
+  [202, 11.5, -10],
+  [208, 11, -12],
+  [198, 11.15, -11],
+
+  [40, -200, 568],
+  [38, -190, 578],
+  [39.5, -205, 556],
+  [41, -200, 561],
+  [40.25, -198, 562]  
+];
+
+kmeans.clusterize(data3D, {k: 3}, function(err,res) {
 	if (err) console.error(err);
 	else console.log('%o',res);
 });

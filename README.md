@@ -25,11 +25,15 @@ for (var i = 0 ; i < data.length ; i++)
   vectors[i] = [ data[i]['size'] , data[i]['revenue']];
 
 var kmeans = require('kmeans');
-new kmeans.clusterize(vectors, {k: 4}, function(err,res) {
+kmeans.clusterize(vectors, {k: 4}, function(err,res) {
   if (err) console.error(err);
   else console.log('%o',res);
 });
 ```
+## Intputs
+ - vectors is a nXm array (n [lines] : number of points, m [columns] : number of dimensions)
+ - options object
+    - k : number of clusters
 
 ## Outputs
 An array of objects (one for each cluster) with the following properties: 

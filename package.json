@@ -1,9 +1,13 @@
 {
     "name": "node-kmeans"
   , "version": "0.0.1"
-  , "description": "Node.js implementation of the clustering algorithm k-means"
+  , "description": "Node.js asynchronous implementation of the clustering algorithm k-means"
   , "keywords": ["k-means", "clustering"]
   , "author": "Philmod <philippe.modard@gmail.com>"
+  , "homepage": "http://github.com/philmod/node-kmeans"
+  , "engines": {
+    "node": ">= v0.6.0"
+  }
   , "dependencies": {
     "underscore": "1.4.2"
   }

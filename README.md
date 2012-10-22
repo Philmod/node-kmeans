@@ -21,9 +21,8 @@ var data = [
 
 // Create the data 2D-array (vectors) describing the data
 var vectors = new Array ;
-for (var i = 0 ; i < data.length ; i++) {
-    vectors[i] = [ data[i]['size'] , data[i]['revenue']] ;
-}
+for (var i = 0 ; i < data.length ; i++)
+  vectors[i] = [ data[i]['size'] , data[i]['revenue']];
 
 var kmeans = require('kmeans');
 new kmeans.clusterize(vectors, {k: 4}, function(err,res) {
@@ -31,6 +30,15 @@ new kmeans.clusterize(vectors, {k: 4}, function(err,res) {
   else console.log('%o',res);
 });
 ```
+
+## Outputs
+An array of objects (one for each cluster) with the following properties: 
+ - centroid : array of X elements (X = number of dimensions)
+ - cluster : array of X elements containing the vectors of the input data
+ - clusterInd : array of X integers which are the indexes of the input data
+
+## To do 
+ - Technique to avoid local optima (mutation, ...)
 
 ## License 
 

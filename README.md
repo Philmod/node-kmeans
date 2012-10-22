@@ -31,8 +31,8 @@ kmeans.clusterize(vectors, {k: 4}, function(err,res) {
 });
 ```
 ## Intputs
- - vectors is a nXm array (n [lines] : number of points, m [columns] : number of dimensions)
- - options object
+ - 'vectors' is a nXm array (n [lines] : number of points, m [columns] : number of dimensions)
+ - options object: 
     - k : number of clusters
 
 ## Outputs
@@ -42,6 +42,7 @@ An array of objects (one for each cluster) with the following properties:
  - clusterInd : array of X integers which are the indexes of the input data
 
 ## To do 
+ - Tests
  - Technique to avoid local optima (mutation, ...)
 
 ## License 

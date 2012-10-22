@@ -20,7 +20,7 @@ var data = [
 ];
 
 // Create the data 2D-array (vectors) describing the data
-var vectors = new Array ;
+var vectors = new Array();
 for (var i = 0 ; i < data.length ; i++)
   vectors[i] = [ data[i]['size'] , data[i]['revenue']];
 

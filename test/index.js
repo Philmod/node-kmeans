@@ -70,12 +70,12 @@ describe('kmeans', function(){
       });*/
     });
 
-    it('should return an error if no option', function(){
+    /*it('should return an error if no option', function(){
       kmeans.clusterize([], function(err,res) {
         should.not.exist(res);
 				should.exist(err);
       });
-    });
+    });*/
 
     /*it('should return a result (array)', function(){
       kmeans.clusterize(data3D, {k: 3}, function(err,res) {

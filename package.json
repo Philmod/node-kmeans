@@ -6,13 +6,17 @@
   , "author": "Philmod <philippe.modard@gmail.com>"
   , "homepage": "http://github.com/philmod/node-kmeans"
   , "engines": {
-    "node": ">= v0.6.0"
-  }
+      "node": ">= v0.6.0"
+    }
   , "dependencies": {
-    "underscore": "1.4.2"
-  }
+      "underscore": "1.4.2"
+    }
   , "devDependencies": {
-    "should": "*"
-  }
+      "should": "",
+      "mocha": ""
+    }
+  , "scripts": {
+      "test": "make test"
+    }
   , "main": "index"
 }

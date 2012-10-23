@@ -4,6 +4,7 @@
 
 var kmeans = require('../')
   , should = require('should')
+  , assert = require('assert')
   ;
 
 /**
@@ -48,7 +49,42 @@ var data3D = [
   [40.25, -198, 562]  
 ];
 
-kmeans.clusterize(data3D, {k: 3}, function(err,res) {
-	if (err) console.error(err);
-	else console.log('%o',res);
+/**
+ * Tests
+ */
+
+/**/
+
+describe('kmeans', function(){
+  describe('#clusterize()', function(){
+    
+    it('should return an error if no data', function(){
+      kmeans.clusterize([], {k: 3}, function(err,res) {
+        res.should.not.exist();
+        err.should.equal(new Error("Provide an array of data"));
+        err.should.strictEqual(new Error("Provide an array of data"));
+      });
+      kmeans.clusterize({k: 3}, function(err,res) {
+        res.should.not.exist();
+        err.should.equal(new Error("Provide an array of data"));
+        err.should.strictEqual(new Error("Provide an array of data"));
+      });
+    });
+
+    it('should return an error if no option', function(){
+      kmeans.clusterize([], function(err,res) {
+        res.should.not.exist();
+        err.should.equal(new Error("Provide an array of data"));
+        err.should.strictEqual(new Error("Provide an array of data"));
+      });
+    });
+
+    /*it('should return a result (array)', function(){
+      kmeans.clusterize(data3D, {k: 3}, function(err,res) {
+        err.should.not.exist();
+        res.should.have.length(3);
+      });
+    });*/
+
+  });
 });

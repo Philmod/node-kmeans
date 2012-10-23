@@ -58,24 +58,22 @@ var data3D = [
 describe('kmeans', function(){
   describe('#clusterize()', function(){
     
-    it('should return an error if no data', function(){
+    it('should return an error if no data', function(done){
       kmeans.clusterize([], {k: 3}, function(err,res) {
-        res.should.not.exist();
-        err.should.equal(new Error("Provide an array of data"));
-        err.should.strictEqual(new Error("Provide an array of data"));
+        should.not.exist(res);
+				should.exist(err);
+        done(); 
       });
       kmeans.clusterize({k: 3}, function(err,res) {
-        res.should.not.exist();
-        err.should.equal(new Error("Provide an array of data"));
-        err.should.strictEqual(new Error("Provide an array of data"));
+        should.not.exist(res);
+        should.exist(err);
       });
     });
 
     it('should return an error if no option', function(){
       kmeans.clusterize([], function(err,res) {
-        res.should.not.exist();
-        err.should.equal(new Error("Provide an array of data"));
-        err.should.strictEqual(new Error("Provide an array of data"));
+        should.not.exist(res);
+				should.exist(err);
       });
     });
 

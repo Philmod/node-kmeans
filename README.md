@@ -39,8 +39,7 @@ An array of objects (one for each cluster) with the following properties:
  - cluster : array of X elements containing the vectors of the input data
  - clusterInd : array of X integers which are the indexes of the input data
 
-## To do 
- - Tests
+## To do
  - Technique to avoid local optima (mutation, ...)
 
 ## License 

@@ -10,25 +10,6 @@ var kmeans = require('../')
 /**
  * Data (expressly very separated)
  */
-var data2D = [ 
-  [-10, 5],
-  [-11, 6],
-  [-10.5, 6.5],
-  [-9.5, 5.5],
-  [-9.75, 6.25],
-
-  [200,12],
-  [205,11.8],
-  [202,11.5],
-  [208,11],
-  [198,11.15],
-
-  [40,-200],
-  [38,-190],
-  [39.5,-205],
-  [41,-200],
-  [40.25,-198]  
-];
 var data3D = [ 
   [-10, 5, 100],
   [-11, 6, 101],
@@ -81,7 +62,7 @@ describe('kmeans', function(){
     it('should throw an error if no \'k\' option', function(done){
       kmeans.clusterize({}, {k: 3}, function(err,res) {
         should.not.exist(res);
-        err.should.equal('Provide a correct number k of clusters');
+        should.exist(err);
         done(); 
       });
     });
@@ -89,7 +70,7 @@ describe('kmeans', function(){
     it('should return an error if the data vector is not an array', function(done){
       kmeans.clusterize({}, {k: 3}, function(err,res) {
         should.not.exist(res);
-				err.should.equal(new Error('Provide an array of data'));
+				should.exist(err);
         done(); 
       });
     });
@@ -97,7 +78,7 @@ describe('kmeans', function(){
     it('should return an error if the number of points is smaller than the number k of clusters', function(done){
       kmeans.clusterize({}, {k: 3}, function(err,res) {
         should.not.exist(res);
-        err.should.equal(new Error('The number of points must be greater than the number k of clusters'));
+        should.exist(err);
         done(); 
       });
     });
@@ -111,6 +92,20 @@ describe('kmeans', function(){
         should.not.exist(err);
         should.exist(res);
         res.should.have.length(3);
+        done();
+      });
+    });
+
+    it('should return a 2 groups with the 2 points', function(done){
+      kmeans.clusterize([[1,1],[2,2]], {k: 2}, function(err,res) {
+        should.not.exist(err);
+        should.exist(res);
+        res.should.have.length(2);
+        if (res[0].centroid == [1,1])
+          res[1].centroid.should.equal([2,2])
+        else if (res[0].centroid == [2,2])
+          res[1].centroid.should.equal([1,1])
+        else throw new Error('should return a 2 groups with the 2 points');
         done();
       });
     });

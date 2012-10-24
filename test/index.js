@@ -53,6 +53,8 @@ var data3D = [
  * Tests
  */
 
+ var test = function(a) { throw new Error('fail'); };
+
 /**/
 
 describe('kmeans', function(){
@@ -66,12 +68,16 @@ describe('kmeans', function(){
       });
     });
 
-    it('should throw an error if no data', function(){
+    /*it('should throw an error if no data', function(){
       kmeans.clusterize({k: 3}, function(err,res) {}).should.throw();
-    });
+    });*/
 
-    it('should throw an error if no data 2', function(){
+    /*it('should throw an error if no data 2', function(){
       kmeans.clusterize({k: 3}, function(err,res) {}).should.throw("Provide a callback function");
+    });*/
+
+    it('should catch the error', function() {
+      test(1).should.throw();
     });
 
     /*it('should throw an error if no option', function(){

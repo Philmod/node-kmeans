@@ -96,14 +96,11 @@ describe('kmeans', function(){
       });
     });
 
-    it('should return a 2 groups with the 2 points', function(done){
+    it('should return 2 groups with the 2 vectors', function(done){
       kmeans.clusterize([[1,1],[2,2]], {k: 2}, function(err,res) {
         should.not.exist(err);
         should.exist(res);
         res.should.have.length(2);
-
-        console.log(res[0].centroid);
-        console.log(res[1].centroid);
 
         if (res[0].centroid[0] == 1) {
           res[0].centroid[1].should.equal(1);

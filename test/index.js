@@ -89,7 +89,7 @@ describe('kmeans', function(){
     it('should return an error if the data vector is not an array', function(done){
       kmeans.clusterize({}, {k: 3}, function(err,res) {
         should.not.exist(res);
-				err.should.equal(new Error('Provide an array of data');
+				err.should.equal(new Error('Provide an array of data'));
         done(); 
       });
     });

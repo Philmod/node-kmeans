@@ -26,7 +26,7 @@ var vectors = new Array();
 for (var i = 0 ; i < data.length ; i++)
   vectors[i] = [ data[i]['size'] , data[i]['revenue']];
 
-var kmeans = require('kmeans');
+var kmeans = require('node-kmeans');
 kmeans.clusterize(vectors, {k: 4}, function(err,res) {
   if (err) console.error(err);
   else console.log('%o',res);

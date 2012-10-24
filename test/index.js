@@ -64,25 +64,32 @@ describe('kmeans', function(){
 				should.exist(err);
         done(); 
       });
-      /*kmeans.clusterize({k: 3}, function(err,res) {
-        should.not.exist(res);
-        should.exist(err);
-      });*/
     });
 
-    /*it('should return an error if no option', function(){
+    it('should return an error if no data', function(done){
+      kmeans.clusterize({k: 3}, function(err,res) {
+        should.not.exist(res);
+        should.exist(err);
+        done();
+      });
+    });
+
+    it('should return an error if no option', function(done){
       kmeans.clusterize([], function(err,res) {
         should.not.exist(res);
 				should.exist(err);
+        done();
       });
-    });*/
+    });
 
-    /*it('should return a result (array)', function(){
+    it('should return a result (array)', function(done){
       kmeans.clusterize(data3D, {k: 3}, function(err,res) {
-        err.should.not.exist();
+        should.not.exist(err);
+        should.exist(res);
         res.should.have.length(3);
+        done();
       });
-    });*/
+    });
 
   });
 });

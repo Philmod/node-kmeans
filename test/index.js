@@ -58,33 +58,51 @@ var data3D = [
 /**/
 
 describe('kmeans', function(){
-  describe('#clusterize()', function(){
+  describe('#clusterize() errors', function(){
+
+    it('should throw an error if there aren\'t 3 arguments', function(){
+      (function() {
+        kmeans.clusterize();
+      }).should.throw('Provide 3 arguments: vector, options, callback');
+      (function() {
+        kmeans.clusterize({});
+      }).should.throw('Provide 3 arguments: vector, options, callback');
+      (function() {
+        kmeans.clusterize({},{});
+      }).should.throw('Provide 3 arguments: vector, options, callback');
+    });
+
+    it('should throw an error if no callback function', function(){
+      (function() {
+        kmeans.clusterize([], {}, {});
+      }).should.throw('Provide a callback function');
+    });
+
+    it('should throw an error if no \'k\' option', function(){
+      (function() {
+        kmeans.clusterize([], {}, function(err,res) {});
+      }).should.throw('Provide an array of data');
+    });
     
-    it('should return an error if no data', function(done){
-      kmeans.clusterize([], {k: 3}, function(err,res) {
+    it('should return an error if the data vector is not an array', function(done){
+      kmeans.clusterize({}, {k: 3}, function(err,res) {
         should.not.exist(res);
-				should.exist(err);
+				err.should.equal('Provide an array of data');
         done(); 
       });
     });
 
-    it('should throw an error if no data', function(){
-      (function() {
-        kmeans.clusterize({k: 3}, function(err,res) {});
-      }).should.throw('Provide a callback function');
+    it('should return an error if the number of points is smaller than the number k of clusters', function(done){
+      kmeans.clusterize({}, {k: 3}, function(err,res) {
+        should.not.exist(res);
+        err.should.equal('The number of points must be greater than the number k of clusters');
+        done(); 
+      });
     });
 
-    it('should throw an error if no option', function(){
-      (function() {
-        kmeans.clusterize([], function(err,res) {});
-      }).should.throw('Provide a callback function');
-    });
+  });
 
-    it('should throw an error if no callback', function(){
-      (function() {
-        kmeans.clusterize(data3D, {k: 3});
-      }).should.throw('Provide a callback function');
-    });
+  describe('#clusterize() results', function(){
 
     it('should return a result (array)', function(done){
       kmeans.clusterize(data3D, {k: 3}, function(err,res) {
@@ -96,4 +114,5 @@ describe('kmeans', function(){
     });
 
   });
+
 });

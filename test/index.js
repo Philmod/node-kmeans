@@ -77,7 +77,9 @@ describe('kmeans', function(){
     });*/
 
     it('should catch the error', function() {
-      test(1).should.throw();
+      (function() {
+	 kmeans.clusterize([], function(err,res) {});
+       }).should.throw();
     });
 
     /*it('should throw an error if no option', function(){

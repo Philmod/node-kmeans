@@ -101,11 +101,17 @@ describe('kmeans', function(){
         should.not.exist(err);
         should.exist(res);
         res.should.have.length(2);
-        if (res[0].centroid == [1,1])
+
+        console.log(res[0].centroid);
+        console.log(res[1].centroid);
+
+        if (res[0].centroid == [1,1]) {
           res[1].centroid.should.equal([2,2])
-        else if (res[0].centroid == [2,2])
+        }
+        else if (res[0].centroid == [2,2]) {
           res[1].centroid.should.equal([1,1])
-        else throw new Error('should return a 2 groups with the 2 points');
+        }
+        else throw new Error('should return a 2 groups with the 2 points !!');
         done();
       });
     });

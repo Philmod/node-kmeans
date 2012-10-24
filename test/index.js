@@ -66,21 +66,25 @@ describe('kmeans', function(){
       });
     });
 
-    it('should throw an error if no data', function(done){
+    it('should throw an error if no data', function(){
       kmeans.clusterize({k: 3}, function(err,res) {}).should.throw();
     });
 
-    it('should throw an error if no option', function(done){
+    it('should throw an error if no data 2', function(){
+      kmeans.clusterize({k: 3}, function(err,res) {}).should.throw("Provide a callback function");
+    });
+
+    /*it('should throw an error if no option', function(){
       kmeans.clusterize([], function(err,res) {}).should.throw();
     });
 
-    it('should throw multiple errors', function(done){
+    it('should throw multiple errors', function(){
       kmeans.clusterize({k: 3}, function(err,res) {}).should.throw();
       kmeans.clusterize([], function(err,res) {}).should.throw();
       kmeans.clusterize(function(err,res) {}).should.throw();
       kmeans.clusterize().should.throw();
       kmeans.clusterize({}).should.throw();
-    });
+    });*/
 
     it('should return a result (array)', function(done){
       kmeans.clusterize(data3D, {k: 3}, function(err,res) {

@@ -68,31 +68,23 @@ describe('kmeans', function(){
       });
     });
 
-    /*it('should throw an error if no data', function(){
-      kmeans.clusterize({k: 3}, function(err,res) {}).should.throw();
-    });*/
-
-    /*it('should throw an error if no data 2', function(){
-      kmeans.clusterize({k: 3}, function(err,res) {}).should.throw("Provide a callback function");
-    });*/
-
-    it('should catch the error', function() {
+    it('should throw an error if no data', function(){
       (function() {
-	 kmeans.clusterize([], function(err,res) {});
-       }).should.throw();
+        kmeans.clusterize({k: 3}, function(err,res) {});
+      }).should.throw('Provide a callback function');
     });
 
-    /*it('should throw an error if no option', function(){
-      kmeans.clusterize([], function(err,res) {}).should.throw();
+    it('should throw an error if no option', function(){
+      (function() {
+        kmeans.clusterize([], function(err,res) {});
+      }).should.throw('Provide a callback function');
     });
 
-    it('should throw multiple errors', function(){
-      kmeans.clusterize({k: 3}, function(err,res) {}).should.throw();
-      kmeans.clusterize([], function(err,res) {}).should.throw();
-      kmeans.clusterize(function(err,res) {}).should.throw();
-      kmeans.clusterize().should.throw();
-      kmeans.clusterize({}).should.throw();
-    });*/
+    it('should throw an error if no callback', function(){
+      (function() {
+        kmeans.clusterize(data3D, {k: 3});
+      }).should.throw('Provide a callback function');
+    });
 
     it('should return a result (array)', function(done){
       kmeans.clusterize(data3D, {k: 3}, function(err,res) {

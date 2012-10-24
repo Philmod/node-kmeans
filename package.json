@@ -1,22 +1,33 @@
 {
-    "name": "node-kmeans"
-  , "version": "0.0.1"
-  , "description": "Node.js asynchronous implementation of the clustering algorithm k-means"
-  , "keywords": ["k-means", "clustering"]
-  , "author": "Philmod <philippe.modard@gmail.com>"
-  , "homepage": "http://github.com/philmod/node-kmeans"
-  , "engines": {
-      "node": ">= v0.6.0"
-    }
-  , "dependencies": {
-      "underscore": "1.4.2"
-    }
-  , "devDependencies": {
-      "should": "",
-      "mocha": ""
-    }
-  , "scripts": {
-      "test": "make test"
-    }
-  , "main": "index"
+  "name": "node-kmeans",
+  "version": "0.0.1",
+  "description": "Node.js asynchronous implementation of the clustering algorithm k-means",
+  "keywords": [
+    "k-means",
+    "clustering"
+  ],
+  "author": "Philmod <philippe.modard@gmail.com>",
+  "homepage": "http://github.com/philmod/node-kmeans",
+  "engines": {
+    "node": ">= v0.6.0"
+  },
+  "dependencies": {
+    "underscore": "1.4.2"
+  },
+  "devDependencies": {
+    "should": "",
+    "mocha": ""
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "main": "index",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Philmod/node-kmeans.git"
+  },
+  "license": "BSD"
 }

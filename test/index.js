@@ -78,16 +78,18 @@ describe('kmeans', function(){
       }).should.throw('Provide a callback function');
     });
 
-    it('should throw an error if no \'k\' option', function(){
-      (function() {
-        kmeans.clusterize([], {}, function(err,res) {});
-      }).should.throw('Provide an array of data');
+    it('should throw an error if no \'k\' option', function(done){
+      kmeans.clusterize({}, {k: 3}, function(err,res) {
+        should.not.exist(res);
+        err.should.equal('Provide a correct number k of clusters');
+        done(); 
+      });
     });
     
     it('should return an error if the data vector is not an array', function(done){
       kmeans.clusterize({}, {k: 3}, function(err,res) {
         should.not.exist(res);
-				err.should.equal('Provide an array of data');
+				err.should.equal(new Error('Provide an array of data');
         done(); 
       });
     });
@@ -95,7 +97,7 @@ describe('kmeans', function(){
     it('should return an error if the number of points is smaller than the number k of clusters', function(done){
       kmeans.clusterize({}, {k: 3}, function(err,res) {
         should.not.exist(res);
-        err.should.equal('The number of points must be greater than the number k of clusters');
+        err.should.equal(new Error('The number of points must be greater than the number k of clusters'));
         done(); 
       });
     });

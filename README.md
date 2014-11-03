@@ -2,7 +2,7 @@
 
   Node.js asynchronous implementation of the clustering algorithm k-means
 
-![k-means](http://www.aishack.in/wp-content/uploads/2010/07/kmeans-example.jpg)
+![k-means](http://www.aishack.in/static/img/tut/kmeans-example.jpg)
 
 ## Installation
 

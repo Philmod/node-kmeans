@@ -1,16 +1,11 @@
-/**
- * Module dependencies.
- */
-
-var kmeans = require('../')
-  , should = require('should')
-  , assert = require('assert')
-  ;
+const kmeans = require('../');
+const should = require('should');
+const assert = require('assert');
 
 /**
  * Data (expressly very separated)
  */
-var data3D = [ 
+const data3D = [
   [-10, 5, 100],
   [-11, 6, 101],
   [-10.5, 6.5, 102],
@@ -27,68 +22,68 @@ var data3D = [
   [38, -190, 578],
   [39.5, -205, 556],
   [41, -200, 561],
-  [40.25, -198, 562]  
+  [40.25, -198, 562]
 ];
 
 /**
  * Tests
  */
 
- var test = function(a) { throw new Error('fail'); };
+const test = a => { throw new Error('fail'); };
 
 /**/
 
-describe('kmeans', function(){
-  describe('#clusterize() errors', function(){
+describe('kmeans', () => {
+  describe('#clusterize() errors', () => {
 
-    it('should throw an error if there aren\'t 3 arguments', function(){
-      (function() {
+    it('should throw an error if there aren\'t 3 arguments', () => {
+      (() => {
         kmeans.clusterize();
       }).should.throw('Provide 3 arguments: vector, options, callback');
-      (function() {
+      (() => {
         kmeans.clusterize({});
       }).should.throw('Provide 3 arguments: vector, options, callback');
-      (function() {
+      (() => {
         kmeans.clusterize({},{});
       }).should.throw('Provide 3 arguments: vector, options, callback');
     });
 
-    it('should throw an error if no callback function', function(){
-      (function() {
+    it('should throw an error if no callback function', () => {
+      (() => {
         kmeans.clusterize([], {}, {});
       }).should.throw('Provide a callback function');
     });
 
-    it('should throw an error if no \'k\' option', function(done){
-      kmeans.clusterize({}, {k: 3}, function(err,res) {
+    it('should throw an error if no \'k\' option', done => {
+      kmeans.clusterize({}, {k: 3}, (err, res) => {
         should.not.exist(res);
         should.exist(err);
-        done(); 
-      });
-    });
-    
-    it('should return an error if the data vector is not an array', function(done){
-      kmeans.clusterize({}, {k: 3}, function(err,res) {
-        should.not.exist(res);
-				should.exist(err);
-        done(); 
+        done();
       });
     });
 
-    it('should return an error if the number of points is smaller than the number k of clusters', function(done){
-      kmeans.clusterize({}, {k: 3}, function(err,res) {
+    it('should return an error if the data vector is not an array', done => {
+      kmeans.clusterize({}, {k: 3}, (err, res) => {
+        should.not.exist(res);
+				should.exist(err);
+        done();
+      });
+    });
+
+    it('should return an error if the number of points is smaller than the number k of clusters', done => {
+      kmeans.clusterize({}, {k: 3}, (err, res) => {
         should.not.exist(res);
         should.exist(err);
-        done(); 
+        done();
       });
     });
 
   });
 
-  describe('#clusterize() results', function(){
+  describe('#clusterize() results', () => {
 
-    it('should return a result (array)', function(done){
-      kmeans.clusterize(data3D, {k: 3}, function(err,res) {
+    it('should return a result (array)', done => {
+      kmeans.clusterize(data3D, {k: 3}, (err, res) => {
         should.not.exist(err);
         should.exist(res);
         res.should.have.length(3);
@@ -96,8 +91,8 @@ describe('kmeans', function(){
       });
     });
 
-    it('should return 2 groups with the 2 vectors', function(done){
-      kmeans.clusterize([[1,1],[2,2]], {k: 2}, function(err,res) {
+    it('should return 2 groups with the 2 vectors', done => {
+      kmeans.clusterize([[1,1],[2,2]], {k: 2}, (err, res) => {
         should.not.exist(err);
         should.exist(res);
         res.should.have.length(2);

@@ -1,6 +1,7 @@
+'use strict';
+
 const kmeans = require('../');
 const should = require('should');
-const assert = require('assert');
 
 /**
  * Data (expressly very separated)
@@ -22,20 +23,14 @@ const data3D = [
   [38, -190, 578],
   [39.5, -205, 556],
   [41, -200, 561],
-  [40.25, -198, 562]
+  [40.25, -198, 562],
 ];
 
 /**
  * Tests
  */
-
-const test = a => { throw new Error('fail'); };
-
-/**/
-
 describe('kmeans', () => {
   describe('#clusterize() errors', () => {
-
     it('should throw an error if there aren\'t 3 arguments', () => {
       (() => {
         kmeans.clusterize();
@@ -44,7 +39,7 @@ describe('kmeans', () => {
         kmeans.clusterize({});
       }).should.throw('Provide 3 arguments: vector, options, callback');
       (() => {
-        kmeans.clusterize({},{});
+        kmeans.clusterize({}, {});
       }).should.throw('Provide 3 arguments: vector, options, callback');
     });
 
@@ -55,7 +50,7 @@ describe('kmeans', () => {
     });
 
     it('should throw an error if no \'k\' option', done => {
-      kmeans.clusterize({}, {k: 3}, (err, res) => {
+      kmeans.clusterize({}, { k: 3 }, (err, res) => {
         should.not.exist(res);
         should.exist(err);
         done();
@@ -63,27 +58,26 @@ describe('kmeans', () => {
     });
 
     it('should return an error if the data vector is not an array', done => {
-      kmeans.clusterize({}, {k: 3}, (err, res) => {
-        should.not.exist(res);
-				should.exist(err);
-        done();
-      });
-    });
-
-    it('should return an error if the number of points is smaller than the number k of clusters', done => {
-      kmeans.clusterize({}, {k: 3}, (err, res) => {
+      kmeans.clusterize({}, { k: 3 }, (err, res) => {
         should.not.exist(res);
         should.exist(err);
         done();
       });
     });
 
+    it(`should return an error if the number of points is smaller than the
+      number k of clusters`, done => {
+      kmeans.clusterize({}, { k: 3 }, (err, res) => {
+        should.not.exist(res);
+        should.exist(err);
+        done();
+      });
+    });
   });
 
   describe('#clusterize() results', () => {
-
     it('should return a result (array)', done => {
-      kmeans.clusterize(data3D, {k: 3}, (err, res) => {
+      kmeans.clusterize(data3D, { k: 3 }, (err, res) => {
         should.not.exist(err);
         should.exist(res);
         res.should.have.length(3);
@@ -92,26 +86,24 @@ describe('kmeans', () => {
     });
 
     it('should return 2 groups with the 2 vectors', done => {
-      kmeans.clusterize([[1,1],[2,2]], {k: 2}, (err, res) => {
+      kmeans.clusterize([[1, 1], [2, 2]], { k: 2 }, (err, res) => {
         should.not.exist(err);
         should.exist(res);
         res.should.have.length(2);
 
-        if (res[0].centroid[0] == 1) {
+        if (res[0].centroid[0] === 1) {
           res[0].centroid[1].should.equal(1);
           res[1].centroid[0].should.equal(2);
           res[1].centroid[1].should.equal(2);
-        }
-        else if (res[0].centroid[0] == 2) {
+        } else if (res[0].centroid[0] === 2) {
           res[0].centroid[1].should.equal(2);
           res[1].centroid[0].should.equal(1);
           res[1].centroid[1].should.equal(1);
+        } else {
+          throw new Error('should return a 2 groups with the 2 points');
         }
-        else throw new Error('should return a 2 groups with the 2 points');
         done();
       });
     });
-
   });
-
 });

@@ -105,5 +105,40 @@ describe('kmeans', () => {
         done();
       });
     });
+
+    it('should return 3 groups with well defined centroids', done => {
+      // Data is a well separated set of values in the range [0-10],[100-110],[1000-1010], so
+      // despite random initialization, final centroids should be around ~5,~105 and ~1005
+      let data = [];
+      for (let i = 0; i < 100; i++) {
+        data.push(Math.floor(Math.random() * 10));
+      }
+      for (let i = 0; i < 100; i++) {
+        data.push(Math.floor(Math.random() * 10 + 100));
+      }
+      for (let i = 0; i < 100; i++) {
+        data.push(Math.floor(Math.random() * 10 + 1000));
+      }
+
+      data = data.map(d => [d]);
+
+      kmeans.clusterize(data, { k: 3 }, (err, res) => {
+        should.not.exist(err);
+        should.exist(res);
+        res.should.have.length(3);
+
+        // Get only centroid value and sort ascending
+        const ks = res.map(r => r.centroid[0]);
+        ks.sort((a, b) => a - b);
+
+        ks[0].should.be.aboveOrEqual(0);
+        ks[0].should.be.belowOrEqual(10);
+        ks[1].should.be.aboveOrEqual(100);
+        ks[1].should.be.belowOrEqual(110);
+        ks[2].should.be.aboveOrEqual(1000);
+        ks[2].should.be.belowOrEqual(1010);
+        done();
+      });
+    });
   });
 });

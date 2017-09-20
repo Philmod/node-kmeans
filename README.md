@@ -33,10 +33,12 @@ kmeans.clusterize(vectors, {k: 4}, (err,res) => {
   else console.log('%o',res);
 });
 ```
-## Intputs
- - 'vectors' is a nXm array (n [lines] : number of points, m [columns] : number of dimensions)
- - options object:
-    - k : number of clusters
+## Inputs
+ - **vectors** is a nXm array (n [lines] : number of points, m [columns] : number of dimensions)
+ - **options** object:
+    - **k** : number of clusters
+    - **distance** (optional) : custom distance function returning the distance between two points `(a,b) => number`, *default* Euclidian Distance
+ - **callback** node-style callback taking error and result argument
 
 ## Outputs
 An array of objects (one for each cluster) with the following properties:

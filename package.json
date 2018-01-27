@@ -24,7 +24,8 @@
   "scripts": {
     "test": "make test",
     "hint": "eslint '**/*.js'",
-    "pretest": "npm run hint"
+    "pretest": "npm run hint",
+    "postversion": "git push --tags"
   },
   "main": "index",
   "directories": {

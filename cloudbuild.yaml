@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['test']
+- name: 'busybox'
+  args: ['echo', '$TAG_NAME']
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['publish', '$TAG_NAME']

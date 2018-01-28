@@ -1,6 +1,6 @@
 {
   "name": "node-kmeans",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Node.js asynchronous implementation of the clustering algorithm k-means",
   "keywords": [
     "k-means",

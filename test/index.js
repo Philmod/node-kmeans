@@ -30,20 +30,30 @@ const data3D = [
  * Tests
  */
 describe('kmeans', () => {
+  describe('#clusterize()', () => {
+    it('should return a promise if no callback function', () => {
+      /* eslint-disable new-cap */
+      kmeans.clusterize([], {}).should.be.Promise();
+    });
+  });
+
   describe('#clusterize() errors', () => {
-    it('should throw an error if there aren\'t 3 arguments', () => {
+    it('should throw an error if there aren\'t 2 arguments', () => {
       (() => {
         kmeans.clusterize();
-      }).should.throw('Provide 3 arguments: vector, options, callback');
+      }).should.throw('Provide 2 arguments: vector, options');
       (() => {
         kmeans.clusterize({});
-      }).should.throw('Provide 3 arguments: vector, options, callback');
-      (() => {
-        kmeans.clusterize({}, {});
-      }).should.throw('Provide 3 arguments: vector, options, callback');
+      }).should.throw('Provide 2 arguments: vector, options');
     });
 
-    it('should throw an error if no callback function', () => {
+    it('should not throw an error if there are 2 arguments', () => {
+      (() => {
+        kmeans.clusterize({}, {});
+      }).should.not.throw();
+    });
+
+    it('should throw an error if callback is no function', () => {
       (() => {
         kmeans.clusterize([], {}, {});
       }).should.throw('Provide a callback function');
@@ -55,6 +65,10 @@ describe('kmeans', () => {
         should.exist(err);
         done();
       });
+    });
+
+    it('should reject promise if no \'k\' option', () => {
+      kmeans.clusterize({}, { k: 3 }).should.be.rejected();
     });
 
     it('should return an error if the data vector is not an array', done => {
@@ -83,6 +97,10 @@ describe('kmeans', () => {
         res.should.have.length(3);
         done();
       });
+    });
+
+    it('should return a result (array) with promise', () => {
+      kmeans.clusterize(data3D, { k: 3 }).should.be.eventually.have.length(3);
     });
 
     it('should return 2 groups with the 2 vectors', done => {

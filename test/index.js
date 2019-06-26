@@ -1,7 +1,6 @@
-'use strict';
+const should = require('should');
 
 const kmeans = require('../');
-const should = require('should');
 
 /**
  * Data (expressly very separated)
@@ -49,7 +48,7 @@ describe('kmeans', () => {
       }).should.throw('Provide a callback function');
     });
 
-    it('should throw an error if no \'k\' option', done => {
+    it('should throw an error if no \'k\' option', (done) => {
       kmeans.clusterize({}, { k: 3 }, (err, res) => {
         should.not.exist(res);
         should.exist(err);
@@ -57,7 +56,7 @@ describe('kmeans', () => {
       });
     });
 
-    it('should return an error if the data vector is not an array', done => {
+    it('should return an error if the data vector is not an array', (done) => {
       kmeans.clusterize({}, { k: 3 }, (err, res) => {
         should.not.exist(res);
         should.exist(err);
@@ -66,7 +65,7 @@ describe('kmeans', () => {
     });
 
     it(`should return an error if the number of points is smaller than the
-      number k of clusters`, done => {
+      number k of clusters`, (done) => {
       kmeans.clusterize({}, { k: 3 }, (err, res) => {
         should.not.exist(res);
         should.exist(err);
@@ -76,7 +75,7 @@ describe('kmeans', () => {
   });
 
   describe('#clusterize() results', () => {
-    it('should return a result (array)', done => {
+    it('should return a result (array)', (done) => {
       kmeans.clusterize(data3D, { k: 3 }, (err, res) => {
         should.not.exist(err);
         should.exist(res);
@@ -85,7 +84,7 @@ describe('kmeans', () => {
       });
     });
 
-    it('should return 2 groups with the 2 vectors', done => {
+    it('should return 2 groups with the 2 vectors', (done) => {
       kmeans.clusterize([[1, 1], [2, 2]], { k: 2 }, (err, res) => {
         should.not.exist(err);
         should.exist(res);
@@ -106,7 +105,7 @@ describe('kmeans', () => {
       });
     });
 
-    it('should return 3 groups with well defined centroids', done => {
+    it('should return 3 groups with well defined centroids', (done) => {
       // Data is a well separated set of values in the range [0-10],[100-110],[1000-1010], so
       // despite random initialization, final centroids should be around ~5,~105 and ~1005
       let data = [];

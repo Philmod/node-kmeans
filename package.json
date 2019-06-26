@@ -1,6 +1,6 @@
 {
   "name": "node-kmeans",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Node.js asynchronous implementation of the clustering algorithm k-means",
   "keywords": [
     "k-means",
@@ -12,12 +12,12 @@
     "node": ">= v0.6.0"
   },
   "dependencies": {
-    "underscore": "1.4.2"
+    "underscore": "^1.9.1"
   },
   "devDependencies": {
-    "eslint": "^2.10.2",
-    "eslint-config-airbnb-base": "^3.0.1",
-    "eslint-plugin-import": "^1.8.0",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.18.0",
     "mocha": "",
     "should": ""
   },

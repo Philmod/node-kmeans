@@ -38,6 +38,7 @@ kmeans.clusterize(vectors, {k: 4}, (err,res) => {
  - **options** object:
     - **k** : number of clusters
     - **distance** (optional) : custom distance function returning the distance between two points `(a,b) => number`, *default* Euclidian Distance
+    - **seed** (optional) : value that can be provided to get repeatable cluster generation
  - **callback** node-style callback taking error and result argument
 
 ## Outputs

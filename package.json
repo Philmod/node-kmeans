@@ -12,6 +12,7 @@
     "node": ">= v0.6.0"
   },
   "dependencies": {
+    "seedrandom": "^3.0.5",
     "underscore": "^1.9.1"
   },
   "devDependencies": {

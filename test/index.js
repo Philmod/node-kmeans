@@ -139,5 +139,17 @@ describe('kmeans', () => {
         done();
       });
     });
+
+    it('should produce consistent output when a seed is provided', (done) => {
+      kmeans.clusterize(data3D, { k: 3, seed: 42 }, (err, res) => {
+
+        // Verify first value of each centroid is always the same
+        const cs = res.map(r => r.centroid[0]);
+        cs[0].should.equal(202.6);
+        cs[1].should.equal(-10.15);
+        cs[2].should.equal(39.75);
+        done();
+      });
+    });
   });
 });
